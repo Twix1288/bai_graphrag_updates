@@ -56,14 +56,42 @@
                   "description": "World-famous stretch of white sand perfect for beginner surfing and outrigger canoe rides."
                 },
                 {
-                  "name": "Diamond Head State Monument (Lē'ahi)",
+                  "name": "Diamond Head State Monument (L\u0113'ahi)",
                   "description": "Iconic volcanic tuff cone. Hiking the summit trail requires advance reservations and offers panoramic views of Honolulu."
                 },
                 {
                   "name": "Honolulu Zoo & Waikiki Aquarium",
                   "description": "Family-friendly attractions located at the edge of Waikiki near Kapi'olani Park."
                 }
-              ]
+              ],
+              "hotels": [
+                {
+                  "name": "The Royal Hawaiian",
+                  "category": "Luxury / Historic",
+                  "description": "Known as the 'Pink Palace of the Pacific', this historic 1927 resort offers old-world elegance right on Waikiki Beach.",
+                  "source": "Travel + Leisure"
+                },
+                {
+                  "name": "Moana Surfrider, A Westin Resort",
+                  "category": "Luxury / Historic",
+                  "description": "Waikiki's first hotel, featuring iconic Victorian architecture and a massive banyan tree in the oceanfront courtyard.",
+                  "source": "Cond\u00e9 Nast Traveler"
+                },
+                {
+                  "name": "Queen Kapiolani Hotel",
+                  "category": "Boutique / Mid-range",
+                  "description": "Retro-chic boutique hotel offering stunning, unobstructed views of Diamond Head.",
+                  "source": "Nomadic Matt"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Outrigger Canoe Surfing",
+                  "description": "Ride the waves in a traditional Hawaiian outrigger canoe, an activity unique to Waikiki Beach.",
+                  "source": "Hawaii Magazine"
+                }
+              ],
+              "rag_context": "Waikiki is the bustling, high-density epicenter of Oahu's tourism. It is ideal for first-time visitors seeking walkability, luxury shopping on Kalakaua Avenue, and beginner-friendly surfing, though it is often crowded."
             },
             {
               "name": "Downtown Honolulu",
@@ -96,6 +124,41 @@
                 {
                   "name": "Waimea Valley",
                   "description": "Botanical garden and cultural site featuring a paved trail leading to Waimea Falls."
+                },
+                {
+                  "name": "Banzai Pipeline & Sunset Beach",
+                  "description": "World-famous winter surf breaks where massive swells draw professional surfers."
+                }
+              ]
+            },
+            {
+              "name": "Haleiwa & Surrounding Coast",
+              "type": "Historic Surf Towns",
+              "rag_context": "The North Shore is the surfing capital of the world. In winter (Nov-Feb), massive swells bring professional surfers. In summer, the water is calm and ideal for snorkeling and swimming. It retains a rural, food-truck-heavy, laid-back vibe.",
+              "hotels": [
+                {
+                  "name": "Turtle Bay Resort",
+                  "category": "Luxury Resort",
+                  "description": "The only major luxury resort on the North Shore, set on a sprawling 1,300-acre peninsula with golf and private beaches.",
+                  "source": "The Points Guy"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Shark Cage Diving",
+                  "description": "Departing from Haleiwa Harbor, operators like Hawaii Shark Encounters take visitors 3 miles offshore to observe Galapagos and Sandbar sharks safely.",
+                  "source": "Lonely Planet"
+                },
+                {
+                  "name": "Toa Luau at Waimea Valley",
+                  "description": "A highly rated, culturally authentic daytime luau that includes admission to the botanical gardens and falls.",
+                  "source": "Hawaii Vacation Guide"
+                }
+              ],
+              "attractions": [
+                {
+                  "name": "Matsumoto Shave Ice",
+                  "description": "Legendary shave ice spot in operation since 1951."
                 },
                 {
                   "name": "Banzai Pipeline & Sunset Beach",
@@ -235,6 +298,32 @@
                   "description": "Partially submerged volcanic crater accessed via boat tours; renowned for incredible snorkeling visibility."
                 }
               ]
+            },
+            {
+              "name": "Wailea",
+              "type": "Luxury Resort Area",
+              "rag_context": "Wailea is Maui's premier luxury destination, known for five-star resorts, manicured golf courses, and a string of crescent-shaped beaches that offer some of the best winter whale watching from shore.",
+              "hotels": [
+                {
+                  "name": "Grand Wailea, A Waldorf Astoria Resort",
+                  "category": "Luxury / Family",
+                  "description": "Massive resort famous for its sprawling pool complex, water elevators, and family-friendly amenities.",
+                  "source": "Forbes Travel Guide"
+                },
+                {
+                  "name": "Four Seasons Resort Maui at Wailea",
+                  "category": "Ultra-Luxury",
+                  "description": "Renowned for impeccable service, no resort fees, and being the filming location for season one of 'The White Lotus'.",
+                  "source": "Cond\u00e9 Nast Traveler"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Outrigger Canoe Whale Watching (Winter)",
+                  "description": "Eco-friendly whale watching in traditional canoes, getting you closer to the water than large catamarans.",
+                  "source": "Hawaii Magazine"
+                }
+              ]
             }
           ]
         },
@@ -243,11 +332,11 @@
           "vibe": "Cool, agricultural, mountainous.",
           "sub_locations": [
             {
-              "name": "Haleakalā National Park",
+              "name": "Haleakal\u0101 National Park",
               "type": "National Park",
               "attractions": [
                 {
-                  "name": "Haleakalā Crater Summit",
+                  "name": "Haleakal\u0101 Crater Summit",
                   "description": "10,023-foot dormant volcano. Sunrise viewing is a massive tourist draw and requires strict advance reservations."
                 },
                 {
@@ -274,7 +363,23 @@
                   "name": "Wai'anapanapa State Park",
                   "description": "Famous for its stunning black sand beach (reservations required)."
                 }
-              ]
+              ],
+              "hotels": [
+                {
+                  "name": "Hana-Maui Resort",
+                  "category": "Experiential / Luxury",
+                  "description": "An experiential luxury resort offering a tranquil escape at the end of the Road to Hana, free of TVs and radios to promote mindfulness.",
+                  "source": "Travel + Leisure"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Pipiwai Trail Hike",
+                  "description": "A 4-mile roundtrip hike in the Kipahulu District of Haleakala National Park, taking hikers through a massive bamboo forest to the 400-foot Waimoku Falls.",
+                  "source": "AllTrails"
+                }
+              ],
+              "rag_context": "The Road to Hana is about the journey, not the destination. It is a slow, winding drive through tropical rainforests, requiring drivers to yield at one-lane bridges. Visitors should start early and ideally stay a night in Hana to avoid rushing."
             }
           ]
         }
@@ -323,10 +428,26 @@
                   "description": "Breathtaking two-mile half-moon bay backed by mountains woven with waterfalls."
                 },
                 {
-                  "name": "Nāpali Coast State Wilderness Park",
+                  "name": "N\u0101pali Coast State Wilderness Park",
                   "description": "17 miles of spectacular coastline featuring 4,000-foot cliffs. Accessible only by hiking the Kalalau Trail, by boat, or by helicopter."
                 }
-              ]
+              ],
+              "hotels": [
+                {
+                  "name": "1 Hotel Hanalei Bay",
+                  "category": "Eco-Luxury",
+                  "description": "A newly renovated, hyper-sustainable wellness resort built into the cliffside overlooking Hanalei Bay.",
+                  "source": "Vogue"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Na Pali Coast Catamaran Snorkel",
+                  "description": "Full-day boat tours departing from the North or West shore to view the inaccessible Na Pali cliffs and snorkel in pristine waters.",
+                  "source": "The Hawaii Vacation Guide"
+                }
+              ],
+              "rag_context": "Kauai's North Shore is defined by dramatic green mountains and the iconic Hanalei Bay. The weather is rainier here, which keeps it lush. The vibe is a mix of high-end wellness resorts in Princeville and laid-back surf culture in Hanalei."
             }
           ]
         },
@@ -335,16 +456,31 @@
           "vibe": "Sunny, dry, resort-focused.",
           "sub_locations": [
             {
-              "name": "Po'ipū",
+              "name": "Po'ip\u016b",
               "type": "Resort Town",
               "attractions": [
                 {
-                  "name": "Po'ipū Beach Park",
+                  "name": "Po'ip\u016b Beach Park",
                   "description": "Popular beach for snorkeling and spotting Hawaiian monk seals basking on the sand."
                 },
                 {
                   "name": "Spouting Horn",
                   "description": "Blowhole where crashing waves force water through a lava tube, shooting it up into the air."
+                }
+              ],
+              "hotels": [
+                {
+                  "name": "Grand Hyatt Kauai Resort & Spa",
+                  "category": "Luxury / Resort",
+                  "description": "Famous for its massive multi-level saltwater lagoon pools and lush, classic Hawaiian architecture.",
+                  "source": "The Points Guy"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Koloa Zipline",
+                  "description": "The longest zipline course on Kauai, featuring 8 lines through historic sugar plantation lands.",
+                  "source": "Hawaii Magazine"
                 }
               ]
             }
@@ -363,7 +499,7 @@
                   "description": "Known as the 'Grand Canyon of the Pacific,' stretching 14 miles long and over 3,600 feet deep."
                 },
                 {
-                  "name": "Kōke'e State Park",
+                  "name": "K\u014dke'e State Park",
                   "description": "Forested park north of the canyon offering hiking trails and lookouts over the Kalalau Valley."
                 }
               ]
@@ -455,7 +591,7 @@
           ]
         },
         {
-          "region_name": "Puna & Ka'ū (South)",
+          "region_name": "Puna & Ka'\u016b (South)",
           "vibe": "Volcanic, raw, remote.",
           "sub_locations": [
             {
@@ -463,7 +599,7 @@
               "type": "National Park",
               "attractions": [
                 {
-                  "name": "Kīlauea Caldera",
+                  "name": "K\u012blauea Caldera",
                   "description": "One of the world's most active volcanoes. Visitors can drive the Crater Rim Drive and walk through the Thurston Lava Tube."
                 },
                 {
@@ -475,7 +611,7 @@
           ]
         },
         {
-          "region_name": "Kohala (Northwest) & Hāmākua Coast (Northeast)",
+          "region_name": "Kohala (Northwest) & H\u0101m\u0101kua Coast (Northeast)",
           "vibe": "Luxury resorts (West) to sheer cliff valleys (East).",
           "sub_locations": [
             {
@@ -483,12 +619,49 @@
               "type": "Paniolo (Cowboy) Country & Resorts",
               "attractions": [
                 {
-                  "name": "Pu'ukoholā Heiau",
+                  "name": "Pu'ukohol\u0101 Heiau",
                   "description": "Massive ancient stone temple built by King Kamehameha I."
                 },
                 {
                   "name": "Waipi'o Valley Lookout",
                   "description": "Dramatic overlook of the 'Valley of the Kings,' framed by towering sea cliffs and cascading waterfalls."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Kohala (Northwest) & Kona",
+          "vibe": "Luxury resorts (North) to sunny, historical coffee towns (South).",
+          "sub_locations": [
+            {
+              "name": "Kohala Coast",
+              "type": "Resort Corridor",
+              "rag_context": "The Kohala Coast is carved into black lava fields. It receives very little rain, making it the most reliable region for sunny beach vacations. It is home to the island's most expansive luxury mega-resorts.",
+              "hotels": [
+                {
+                  "name": "Mauna Kea Beach Hotel, Autograph Collection",
+                  "category": "Luxury / Historic",
+                  "description": "Founded by Laurance Rockefeller, this mid-century modern masterpiece sits on Kauna\u02bboa Bay, widely considered the best white sand beach on the island.",
+                  "source": "Cond\u00e9 Nast Traveler"
+                },
+                {
+                  "name": "Hilton Waikoloa Village",
+                  "category": "Family / Mega-Resort",
+                  "description": "A massive 62-acre resort requiring trams and mahogany boats to navigate. Features a saltwater snorkeling lagoon and multiple pools.",
+                  "source": "Family Vacation Critic"
+                }
+              ],
+              "activities": [
+                {
+                  "name": "Night Manta Ray Snorkel",
+                  "description": "A world-renowned excursion off the Kona coast where visitors hold onto a lighted surfboard at night to watch massive wild manta rays perform barrel rolls inches away to feed on plankton.",
+                  "source": "National Geographic"
+                },
+                {
+                  "name": "Mauna Kea Summit Stargazing",
+                  "description": "Guided 4x4 tours up to the 13,803-foot summit for breathtaking sunsets, followed by astronomer-led stargazing at the visitor center.",
+                  "source": "Space.com"
                 }
               ]
             }
@@ -525,12 +698,12 @@
       ]
     },
     {
-      "island_name": "Lāna'i",
+      "island_name": "L\u0101na'i",
       "nickname": "The Pineapple Isle",
       "overview": "The smallest inhabited island accessible to visitors, offering luxurious privacy at high-end resorts alongside rugged, off-the-beaten-path 4x4 adventures.",
       "regions": [
         {
-          "region_name": "South Lāna'i",
+          "region_name": "South L\u0101na'i",
           "sub_locations": [
             {
               "name": "Manele Bay",
@@ -549,10 +722,10 @@
           ]
         },
         {
-          "region_name": "Central Lāna'i",
+          "region_name": "Central L\u0101na'i",
           "sub_locations": [
             {
-              "name": "Lāna'i City",
+              "name": "L\u0101na'i City",
               "type": "Town Center",
               "attractions": [
                 {

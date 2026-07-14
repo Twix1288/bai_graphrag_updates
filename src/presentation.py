@@ -4,7 +4,7 @@ from typing import Any, Dict
 
 def _bar(score: float, width: int = 10) -> str:
     filled = int(round(max(0.0, min(10.0, float(score))) / 10 * width))
-    return "█" * filled + "·" * (width - filled)
+    return "#" * filled + "." * (width - filled)
 
 
 def render_sublocations(result: Dict[str, Any]) -> str:
@@ -31,16 +31,28 @@ def render_sublocations(result: Dict[str, Any]) -> str:
     lines.append("")
 
     for i, s in enumerate(ranked, 1):
-        island = f" — {s['island']}" if s.get("island") else ""
+        island = f" - {s['island']}" if s.get("island") else ""
         tier = s.get("price_tier")
         tier_str = f"${'$' * (tier - 1)} (tier {tier}/4)" if tier else "price n/a"
         fit = s.get("fit_score", 0)
         lines.append(f"  {i}. {s['name']}{island}")
         lines.append(f"       match  {_bar(fit)}  {fit}/10        {tier_str}")
         if s.get("why"):
-            lines.append(f"       ✓ why:      {s['why']}")
+            lines.append(f"       why:      {s['why']}")
         if s.get("tradeoff"):
-            lines.append(f"       ⚠ heads-up: {s['tradeoff']}")
+            lines.append(f"       heads-up: {s['tradeoff']}")
+
+        hotels = s.get("hotels") or []
+        if hotels:
+            lines.append(f"       hotels here ({len(hotels)}):")
+            for h in hotels:
+                ht = h.get("price_tier")
+                htier = f"  {'$' * ht}" if ht else ""
+                cat = f" - {h['category']}" if h.get("category") else ""
+                lines.append(f"          - {h['name']}{htier}{cat}")
+        activities = s.get("activities") or []
+        if activities:
+            lines.append(f"       things to do: {', '.join(activities[:4])}")
         lines.append("")
 
     return "\n".join(lines).rstrip()

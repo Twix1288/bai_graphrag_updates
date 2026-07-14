@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 
 from src.models.sublocation_attributes import (
     ATTRIBUTES, SCORE_MIN, SCORE_MAX, NEUTRAL_SCORE,
-    PRICE_TIER_MIN, PRICE_TIER_MAX, empty_scores,
+    PRICE_TIER_MIN, PRICE_TIER_MAX, empty_scores, budget_tier_from_text,
 )
 
 logger = logging.getLogger(__name__)
@@ -118,7 +118,12 @@ async def preferences_to_weights(llm, free_text: str) -> Dict[str, Any]:
     weights = {a: _clamp_score(raw_weights.get(a, 0.0)) for a in ATTRIBUTES}
     if not any(weights.values()):
         weights = {a: NEUTRAL_SCORE for a in ATTRIBUTES}  # uniform fallback
-    return {"weights": weights, "budget_tier": _clamp_tier(data.get("budget_tier"))}
+    # A deterministic keyword read of the budget wins over the small model's guess
+    # (which mis-inferred "money is no object" as tier 2); LLM value is the fallback.
+    budget_tier = budget_tier_from_text(free_text)
+    if budget_tier is None:
+        budget_tier = _clamp_tier(data.get("budget_tier"))
+    return {"weights": weights, "budget_tier": budget_tier}
 
 
 async def write_explanations(llm, query: str, destination: str,

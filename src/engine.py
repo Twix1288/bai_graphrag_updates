@@ -325,6 +325,11 @@ class GraphRAGQueryEngine:
             }
             if with_island:
                 card["island"] = r.get("island")
+            # Group the hotels/activities that sit inside this sub-location (§9 funnel).
+            dest_scope = r.get("island") if with_island else location_label
+            grouped = await self._hotels_and_activities(r["name"], dest_scope)
+            card["hotels"] = grouped["hotels"]
+            card["activities"] = grouped["activities"]
             cards.append(card)
 
         # Conversational lead-in (LLM voice, grounded on the deterministic order/scores).
@@ -339,6 +344,29 @@ class GraphRAGQueryEngine:
             },
             "tool_used": "sublocation_resolver",
         }
+
+    async def _hotels_and_activities(self, sub_name: str, dest_name: str) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Pull the hotels and activities located in a sub-location, scoped by
+        destination so same-named sub-locations on different islands don't mix.
+        Returns {'hotels': [{name, category, price_tier}], 'activities': [name]}.
+        """
+        cypher = """
+        MATCH (d:Destination {name: $dest})<-[:PART_OF]-(:Region)<-[:PART_OF]-(s:SubLocation {name: $sub})
+        OPTIONAL MATCH (h:Hotel)-[:LOCATED_IN]->(s)
+        OPTIONAL MATCH (a:Activity)-[:LOCATED_IN]->(s)
+        RETURN collect(DISTINCT {name: h.name, category: h.category, price_tier: h.price_tier}) AS hotels_raw,
+               collect(DISTINCT a.name) AS activities_raw
+        """
+        res = await self.neo4j.execute_query(cypher, {"sub": sub_name, "dest": dest_name})
+        rows = [record.data() for record in res.records]
+        if not rows:
+            return {"hotels": [], "activities": []}
+        row = rows[0]
+        hotels = [h for h in row.get("hotels_raw", []) if h.get("name")]
+        hotels.sort(key=lambda h: (h.get("price_tier") is None, h.get("price_tier"), h["name"]))
+        activities = [a for a in row.get("activities_raw", []) if a]
+        return {"hotels": hotels, "activities": activities}
 
     async def _execute_find_sublocations_for_destination(self, destination_name: str, query: str, history: List[Dict] = None) -> Dict[str, Any]:
         """Rank the sub-locations of ONE destination by fit to the traveler's request."""

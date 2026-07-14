@@ -31,13 +31,36 @@ class NominatimClient:
     _MIN_INTERVAL_S = 1.1  # stay under the 1 req/sec policy with headroom
     _last_request_ts = 0.0  # class-level: throttle across all instances
 
-    def __init__(self, user_agent: Optional[str] = None, timeout: float = 10.0):
+    def __init__(self, user_agent: Optional[str] = None, timeout: float = 10.0,
+                 cache_path: Optional[str] = None):
         contact = os.getenv("NOMINATIM_CONTACT_EMAIL", "graphrag@example.com")
         self.user_agent = user_agent or f"GraphRAG-Ingestion/1.0 ({contact})"
         self.timeout = timeout
         # Verify TLS against the certifi CA bundle (system trust store is often
         # incomplete on macOS Python), consistent with the embedding client.
         self._ssl_context = ssl.create_default_context(cafile=certifi.where())
+        # Disk-backed response cache keyed by cleaned query. The 1 req/sec policy
+        # makes cold ingestion slow; caching makes every re-ingest near-instant
+        # (a cache hit skips both the network call and the throttle). Negative
+        # results are cached too, so unresolved names aren't retried every run.
+        self.cache_path = cache_path or os.getenv("GEOCODE_CACHE", os.path.join(".cache", "geocode.json"))
+        self._cache = self._load_cache()
+
+    def _load_cache(self) -> Dict[str, Any]:
+        try:
+            with open(self.cache_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {}
+
+    def _save_cache(self):
+        directory = os.path.dirname(self.cache_path)
+        if directory:
+            os.makedirs(directory, exist_ok=True)
+        tmp = f"{self.cache_path}.tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(self._cache, f)
+        os.replace(tmp, self.cache_path)  # atomic
 
     def _throttle(self):
         elapsed = time.monotonic() - NominatimClient._last_request_ts
@@ -58,6 +81,8 @@ class NominatimClient:
         return re.sub(r"\s+", " ", q).strip()
 
     def _fetch(self, query: str):
+        if query in self._cache:  # cache hit — no network, no throttle
+            return self._cache[query]
         self._throttle()
         params = urllib.parse.urlencode({
             "q": query, "format": "json", "addressdetails": 1, "limit": 1,
@@ -67,7 +92,10 @@ class NominatimClient:
             headers={"User-Agent": self.user_agent},
         )
         with urllib.request.urlopen(req, timeout=self.timeout, context=self._ssl_context) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            data = json.loads(resp.read().decode("utf-8"))
+        self._cache[query] = data  # cache positive AND negative ([]) results
+        self._save_cache()
+        return data
 
     def geocode(self, query: str) -> List[Dict[str, Any]]:
         # Try the cleaned full query, then fall back to the bare place name (the

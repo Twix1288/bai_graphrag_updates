@@ -14,7 +14,7 @@ from src.clients import get_neo4j_client, get_embedding_client, get_redis_client
 from src.geocoding import Geocoder, NominatimClient
 from src.ingestion import GraphIngestionPipeline
 from src.sublocation_intel import seed_attribute_scores
-from src.models.sublocation_attributes import ATTRIBUTES, score_property
+from src.models.sublocation_attributes import ATTRIBUTES, score_property, price_tier_from_category
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -179,6 +179,47 @@ async def _ingest_attraction(pipeline, geocoder, attr: Dict[str, Any], parent_id
         await _link(pipeline.neo4j, attr_id, parent_id, "LOCATED_IN")
 
 
+async def _ingest_hotel(pipeline, geocoder, hotel: Dict[str, Any], sub_id: str, geo_context: str):
+    """Create a geocoded Hotel entity and link it LOCATED_IN its sub-location.
+    Price tier is derived from the free-text category so the UI can show a $$$ signal."""
+    name = hotel.get("name")
+    if not name:
+        return
+    extra = {
+        "category": hotel.get("category", ""),
+        "description": hotel.get("description", ""),
+        "source": hotel.get("source", ""),
+    }
+    tier = price_tier_from_category(hotel.get("category"))
+    if tier is not None:
+        extra["price_tier"] = tier
+    hotel_id = await _upsert_domain_entity(
+        pipeline, geocoder,
+        name=name, domain_label="Hotel", entity_type="hotel",
+        extra_props=extra, geo_context=geo_context, parent_id=sub_id,
+    )
+    if hotel_id:
+        await _link(pipeline.neo4j, hotel_id, sub_id, "LOCATED_IN")
+
+
+async def _ingest_activity(pipeline, geocoder, activity: Dict[str, Any], sub_id: str, geo_context: str):
+    """Create a geocoded Activity entity and link it LOCATED_IN its sub-location."""
+    name = activity.get("name")
+    if not name:
+        return
+    activity_id = await _upsert_domain_entity(
+        pipeline, geocoder,
+        name=name, domain_label="Activity", entity_type="activity",
+        extra_props={
+            "description": activity.get("description", ""),
+            "source": activity.get("source", ""),
+        },
+        geo_context=geo_context, parent_id=sub_id,
+    )
+    if activity_id:
+        await _link(pipeline.neo4j, activity_id, sub_id, "LOCATED_IN")
+
+
 async def ingest_structured_data(file_path: str):
     logger.info(f"Loading structured data from {file_path}")
 
@@ -263,20 +304,28 @@ async def ingest_structured_data(file_path: str):
                     continue
                 await _link(neo4j_client, sub_id, region_id, "PART_OF")
 
-                # Embed the sub-location (semantic search) ...
-                descriptor = " ".join(filter(None, [
+                # Embed the sub-location for semantic search. Prefer the richer
+                # `rag_context` blurb when present — it also feeds better seeding.
+                rag_context = sub.get("rag_context", "")
+                descriptor = rag_context or " ".join(filter(None, [
                     sub_name, sub.get("type", ""), sub.get("description", ""), sub.get("insider_tip", "")
                 ]))
                 await _embed_sublocation(neo4j_client, embedding_client, sub_id, descriptor)
-                # ... and LLM-seed its attribute profile for the deterministic ranker.
+                # LLM-seed its attribute profile for the deterministic ranker. The
+                # rag_context (if any) is appended to the description for richer signal.
+                seed_description = " ".join(filter(None, [sub.get("description", ""), rag_context]))
                 await _seed_sublocation_scores(
                     neo4j_client, llm_client, sub_id, sub_name,
-                    sub.get("type", ""), sub.get("description", ""), sub.get("insider_tip", ""),
+                    sub.get("type", ""), seed_description, sub.get("insider_tip", ""),
                 )
 
-                # Attractions inside the sub-location
+                # Attractions, hotels, and activities inside the sub-location.
                 for attr in sub.get("attractions", []):
                     await _ingest_attraction(pipeline, geocoder, attr, sub_id, geo_context=sub_name)
+                for hotel in sub.get("hotels", []):
+                    await _ingest_hotel(pipeline, geocoder, hotel, sub_id, geo_context=sub_name)
+                for activity in sub.get("activities", []):
+                    await _ingest_activity(pipeline, geocoder, activity, sub_id, geo_context=sub_name)
 
         # Some datasets put attractions under the island directly
         for attr in island.get("attractions", []):

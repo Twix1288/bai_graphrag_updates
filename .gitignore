@@ -40,6 +40,7 @@ env/
 
 # graphify knowledge-graph output (regenerable tool artifacts, machine-specific paths)
 graphify-out/
+.cache/
 
 # pytest / coverage
 .pytest_cache/
