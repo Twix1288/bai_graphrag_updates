@@ -1,0 +1,152 @@
+[
+  {
+    "query": "What are some romantic hotels in Paris near the Eiffel Tower?",
+    "expected_hotel_names": ["Le Meurice", "Shangri-La Paris", "Hotel Plaza Athenee"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Find me family-friendly resorts in Bali with good pools.",
+    "expected_hotel_names": ["Padma Resort Ubud", "Ayana Resort", "The Apurva Kempinski"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "What's the general vibe of Ubud, Indonesia?",
+    "expected_topics": ["Wellness", "Yoga", "Culture", "Nature"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Are there any good budget hostels near Tanah Lot temple?",
+    "expected_hotel_names": ["Black Pearl Hostel", "Layang Layang Guest House"],
+    "query_type": "point_lookup"
+  },
+  {
+    "query": "I want a luxury stay in Seminyak, what do bloggers recommend?",
+    "expected_hotel_names": ["W Bali", "The Legian", "Alila Seminyak"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Which hotels in Tokyo have the best city views?",
+    "expected_hotel_names": ["Park Hyatt Tokyo", "Andaz Tokyo", "Mandarin Oriental Tokyo"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Are there eco-friendly lodges near the Grand Canyon?",
+    "expected_hotel_names": ["Under Canvas Grand Canyon", "Clear Sky Resorts"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Best luxury hotels in Manhattan for a business trip.",
+    "expected_hotel_names": ["The Plaza", "Baccarat Hotel", "Four Seasons New York"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Give me a summary of the nightlife in Berlin.",
+    "expected_topics": ["Techno", "Clubs", "Bars", "Underground"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Affordable beachfront stays in Tulum.",
+    "expected_hotel_names": ["Papaya Playa Project", "Nomade Tulum", "Ahau Tulum"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Find boutique hotels in Rome near the Colosseum.",
+    "expected_hotel_names": ["Hotel Capo d'Africa", "Palazzo Manfredi"],
+    "query_type": "point_lookup"
+  },
+  {
+    "query": "What are the most pet-friendly resorts in Colorado?",
+    "expected_hotel_names": ["The Little Nell", "St. Regis Aspen", "Viceroy Snowmass"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Top wellness retreats in Costa Rica.",
+    "expected_hotel_names": ["Bodhi Tree Yoga Resort", "Anamaya Retreat", "Blue Spirit"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Summarize the culinary scene in Osaka.",
+    "expected_topics": ["Street Food", "Takoyaki", "Izakaya", "Fine Dining"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Are there adults-only all-inclusive resorts in Cancun?",
+    "expected_hotel_names": ["Le Blanc Spa Resort", "Excellence Playa Mujeres", "Secrets The Vine"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Hotels with private pools in Santorini.",
+    "expected_hotel_names": ["Grace Hotel", "Canaves Oia", "Katikies"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Where should I stay in Kyoto for cherry blossom season?",
+    "expected_hotel_names": ["Ritz-Carlton Kyoto", "Suiran", "Hoshinoya Kyoto"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Best ski-in ski-out hotels in Whistler.",
+    "expected_hotel_names": ["Fairmont Chateau Whistler", "Four Seasons Resort Whistler", "The Westin Resort & Spa"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "What is the adventure tourism like in Queenstown, New Zealand?",
+    "expected_topics": ["Bungee Jumping", "Hiking", "Skiing", "Jet Boating"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Cheap places to stay near Machu Picchu.",
+    "expected_hotel_names": ["Supertramp Hostel", "Ecopackers", "Casa Machu Picchu"],
+    "query_type": "point_lookup"
+  },
+  {
+    "query": "Find romantic riads in Marrakech.",
+    "expected_hotel_names": ["El Fenn", "La Mamounia", "Royal Mansour"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Luxury safari lodges in the Serengeti.",
+    "expected_hotel_names": ["Singita Sasakwa Lodge", "Four Seasons Safari Lodge", "Mwiba Lodge"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Hotels near Central Park with a fitness center.",
+    "expected_hotel_names": ["1 Hotel Central Park", "JW Marriott Essex House", "The Pierre"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Describe the shopping experience in Milan.",
+    "expected_topics": ["Fashion", "Boutiques", "Designer Brands", "Galleria Vittorio Emanuele II"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Best secluded resorts in the Maldives.",
+    "expected_hotel_names": ["Soneva Fushi", "Gili Lankanfushi", "Velaa Private Island"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Family-friendly hotels in Orlando near Disney World.",
+    "expected_hotel_names": ["Four Seasons Resort Orlando", "Disney's Animal Kingdom Lodge", "Waldorf Astoria Orlando"],
+    "query_type": "point_lookup_with_topic"
+  },
+  {
+    "query": "Where can I find fine dining hotels in London?",
+    "expected_hotel_names": ["The Connaught", "The Ritz London", "Claridge's"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "Historic hotels in Istanbul.",
+    "expected_hotel_names": ["Pera Palace Hotel", "Ciragan Palace Kempinski", "Four Seasons Hotel Istanbul at Sultanahmet"],
+    "query_type": "concept_traversal"
+  },
+  {
+    "query": "What are the cultural attractions in Florence?",
+    "expected_topics": ["Uffizi Gallery", "Duomo", "Renaissance Art", "Ponte Vecchio"],
+    "query_type": "macro_summary"
+  },
+  {
+    "query": "Budget-friendly stays in Bangkok near the BTS Skytrain.",
+    "expected_hotel_names": ["Lub d Bangkok Siam", "Siam@Siam Design Hotel", "Holiday Inn Express Bangkok Siam"],
+    "query_type": "point_lookup"
+  }
+]

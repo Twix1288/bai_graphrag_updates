@@ -1,0 +1,613 @@
+{
+  "dataset_metadata": {
+    "topic": "Hawaii Travel & Tourism Guide",
+    "description": "Comprehensive aggregation of tourist destinations, sub-locations, attractions, activities, dining, and media references for the Hawaiian Islands based on top travel blogs, articles, and YouTube guides.",
+    "target_audience": "Tourists, First-Time Visitors, Island Hoppers",
+    "extraction_date": "2026-07-10"
+  },
+  "general_travel_advice": {
+    "best_times_to_visit": "September to November and April to May for the best balance of lower crowds, favorable weather, and reasonable accommodation rates.",
+    "cultural_respect": "Understand kuleana (responsibility). Respect local wildlife (keep distance from sea turtles and monk seals), use reef-safe sunscreen, and honor sacred historical sites by staying on designated trails.",
+    "island_hopping": "Inter-island travel is primarily done via Hawaiian Airlines and Southwest Airlines. Do not pack a single day with multiple islands; allocate at least 3-4 days minimum per island."
+  },
+  "media_references_overview": {
+    "top_youtube_channels": [
+      {
+        "channel_name": "The Hawaii Vacation Guide",
+        "description": "Hosted by Erica and Jordan, offering massive 9-day itineraries, island hopping guides, hotel reviews, and beach safety.",
+        "subscriber_count_estimate": "162K+",
+        "url": "https://www.youtube.com/c/TheHawaiiVacationGuide"
+      },
+      {
+        "channel_name": "Julia Gonzales",
+        "description": "Travel vlogger documenting must-see attractions, cultural landmarks, and local food spots across Oahu and other islands.",
+        "url": "https://www.youtube.com/@juliagonzales"
+      }
+    ],
+    "top_travel_platforms": [
+      {
+        "source": "Go Hawaii (Hawai'i Visitors and Convention Bureau)",
+        "content_type": "Official destination guides, cultural etiquette, and state park highlights.",
+        "url": "https://www.gohawaii.com"
+      },
+      {
+        "source": "Fora Travel",
+        "content_type": "Curated luxury and boutique travel itineraries, high-end dining, and exclusive activities.",
+        "url": "https://www.foratravel.com"
+      }
+    ]
+  },
+  "islands": [
+    {
+      "island_name": "O'ahu",
+      "nickname": "The Gathering Place",
+      "overview": "Home to the state capital (Honolulu) and the majority of Hawaii's population. It offers a mix of vibrant city life, historic military sites, and legendary surf towns.",
+      "regions": [
+        {
+          "region_name": "South Shore / Honolulu",
+          "vibe": "Urban, bustling, historic, tourist-central.",
+          "sub_locations": [
+            {
+              "name": "Waikiki",
+              "type": "Resort District",
+              "attractions": [
+                {
+                  "name": "Waikiki Beach",
+                  "description": "World-famous stretch of white sand perfect for beginner surfing and outrigger canoe rides."
+                },
+                {
+                  "name": "Diamond Head State Monument (Lē'ahi)",
+                  "description": "Iconic volcanic tuff cone. Hiking the summit trail requires advance reservations and offers panoramic views of Honolulu."
+                },
+                {
+                  "name": "Honolulu Zoo & Waikiki Aquarium",
+                  "description": "Family-friendly attractions located at the edge of Waikiki near Kapi'olani Park."
+                }
+              ]
+            },
+            {
+              "name": "Downtown Honolulu",
+              "type": "Historic & Business District",
+              "attractions": [
+                {
+                  "name": "'Iolani Palace",
+                  "description": "The only official royal residence in the United States, home to the Hawaiian Kingdom's last two monarchs."
+                },
+                {
+                  "name": "King Kamehameha Statue",
+                  "description": "Iconic bronze statue honoring the monarch who founded the Kingdom of Hawaii."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "North Shore",
+          "vibe": "Laid-back, surf-centric, rural.",
+          "sub_locations": [
+            {
+              "name": "Haleiwa",
+              "type": "Historic Surf Town",
+              "attractions": [
+                {
+                  "name": "Matsumoto Shave Ice",
+                  "description": "Legendary shave ice spot in operation since 1951."
+                },
+                {
+                  "name": "Waimea Valley",
+                  "description": "Botanical garden and cultural site featuring a paved trail leading to Waimea Falls."
+                },
+                {
+                  "name": "Banzai Pipeline & Sunset Beach",
+                  "description": "World-famous winter surf breaks where massive swells draw professional surfers."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Windward Coast (East)",
+          "vibe": "Lush, scenic, residential.",
+          "sub_locations": [
+            {
+              "name": "Kailua & Kaneohe",
+              "type": "Coastal Towns",
+              "attractions": [
+                {
+                  "name": "Kailua Beach & Lanikai Beach",
+                  "description": "Pristine beaches known for turquoise waters and kayaking to the Mokulua Islands."
+                },
+                {
+                  "name": "Byodo-In Temple",
+                  "description": "Stunning replica of a Japanese Buddhist temple set against the Ko'olau Mountains."
+                },
+                {
+                  "name": "Kualoa Ranch",
+                  "description": "Private nature reserve offering ATV tours, horseback riding, and Hollywood film location tours (Jurassic Park)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Central Oahu & Pearl Harbor",
+          "vibe": "Historic, military, agricultural.",
+          "sub_locations": [
+            {
+              "name": "Pearl Harbor",
+              "type": "National Historic Landmark",
+              "attractions": [
+                {
+                  "name": "USS Arizona Memorial",
+                  "description": "Resting place of 1,102 sailors killed during the 1941 attack. Advance reservations highly recommended."
+                },
+                {
+                  "name": "Dole Plantation",
+                  "description": "Family attraction featuring a pineapple maze and the Pineapple Express Train Tour."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dining_recommendations": [
+        {
+          "restaurant_name": "Ono Seafood",
+          "location": "Honolulu",
+          "specialty": "Ahi and Octopus Poke"
+        },
+        {
+          "restaurant_name": "Buzz's Original Steakhouse",
+          "location": "Kailua",
+          "specialty": "Steak and seafood; frequented by former President Obama"
+        },
+        {
+          "restaurant_name": "The Breadshop",
+          "location": "Kaimuki",
+          "specialty": "Artisan morning pastries (order ahead on Tock)"
+        }
+      ],
+      "featured_media": [
+        {
+          "title": "7 Must-See Attractions in O'ahu, Hawai'i",
+          "source": "Julia Gonzales (YouTube)",
+          "url": "https://www.youtube.com/watch?v=example_oahu_1",
+          "highlights": [
+            "Diamond Head",
+            "Hanauma Bay",
+            "Byodo-In Temple",
+            "Pearl Harbor",
+            "Iolani Palace"
+          ]
+        },
+        {
+          "title": "15 Best Things To Do On The Island Of Oahu",
+          "source": "YouTube Travel Guides",
+          "url": "https://www.youtube.com/watch?v=example_oahu_2",
+          "highlights": [
+            "Sunset boat tours",
+            "Turtle Canyon snorkeling",
+            "Koko Crater Head hiking trail",
+            "Makapu'u Point Lighthouse"
+          ]
+        }
+      ]
+    },
+    {
+      "island_name": "Maui",
+      "nickname": "The Valley Isle",
+      "overview": "Beloved for its world-famous beaches, the sacred Iao Valley, views of migrating humpback whales (in winter), and farm-to-table cuisine. Maui offers a balance of high-end resorts and rugged natural beauty.",
+      "regions": [
+        {
+          "region_name": "West Maui",
+          "vibe": "Resort-heavy, coastal, historic.",
+          "sub_locations": [
+            {
+              "name": "Ka'anapali & Kapalua",
+              "type": "Resort Areas",
+              "attractions": [
+                {
+                  "name": "Ka'anapali Beach",
+                  "description": "Three miles of white sand and crystal clear water, featuring the daily cliff diving ceremony at Pu'u Keka'a (Black Rock)."
+                },
+                {
+                  "name": "Whalers Village",
+                  "description": "Oceanfront retail and dining complex."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "South Maui",
+          "vibe": "Sunny, luxurious, dry.",
+          "sub_locations": [
+            {
+              "name": "Kihei & Wailea",
+              "type": "Coastal Towns",
+              "attractions": [
+                {
+                  "name": "Wailea Beach",
+                  "description": "Crescent-shaped beach backed by luxury resorts like the Four Seasons."
+                },
+                {
+                  "name": "Molokini Crater",
+                  "description": "Partially submerged volcanic crater accessed via boat tours; renowned for incredible snorkeling visibility."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Upcountry Maui",
+          "vibe": "Cool, agricultural, mountainous.",
+          "sub_locations": [
+            {
+              "name": "Haleakalā National Park",
+              "type": "National Park",
+              "attractions": [
+                {
+                  "name": "Haleakalā Crater Summit",
+                  "description": "10,023-foot dormant volcano. Sunrise viewing is a massive tourist draw and requires strict advance reservations."
+                },
+                {
+                  "name": "Ali'i Kula Lavender Farm",
+                  "description": "Scenic agricultural tourism farm offering sweeping views of the central valley."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "East Maui",
+          "vibe": "Remote, lush, rainforest.",
+          "sub_locations": [
+            {
+              "name": "Hana",
+              "type": "Remote Coastal Town",
+              "attractions": [
+                {
+                  "name": "The Road to Hana",
+                  "description": "Iconic 64-mile highway featuring 620 curves and 59 bridges, passing countless waterfalls, bamboo forests, and black sand beaches."
+                },
+                {
+                  "name": "Wai'anapanapa State Park",
+                  "description": "Famous for its stunning black sand beach (reservations required)."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dining_recommendations": [
+        {
+          "restaurant_name": "Paia Fish Market",
+          "location": "Paia",
+          "specialty": "Casual, fresh-caught fish plates and burgers"
+        },
+        {
+          "restaurant_name": "Kihei Food Truck Parks",
+          "location": "Kihei",
+          "specialty": "Local garlic shrimp, fish tacos, and shave ice"
+        }
+      ],
+      "featured_media": [
+        {
+          "title": "Visiting Maui? Watch This First | Maui Travel Guide",
+          "source": "The Hawaii Vacation Guide (YouTube)",
+          "url": "https://www.youtube.com/watch?v=example_maui_1",
+          "highlights": [
+            "Haleakala Sunrise Tours",
+            "Road to Hana Tours",
+            "Napili Kai Beach Resort review",
+            "Molokini snorkel tours"
+          ]
+        }
+      ]
+    },
+    {
+      "island_name": "Kaua'i",
+      "nickname": "The Garden Isle",
+      "overview": "The oldest and northernmost of the main Hawaiian Islands is draped in emerald valleys, sharp mountain spires, and jagged cliffs aged by time and the elements.",
+      "regions": [
+        {
+          "region_name": "North Shore",
+          "vibe": "Lush, dramatic, seasonal surf.",
+          "sub_locations": [
+            {
+              "name": "Princeville & Hanalei",
+              "type": "Resort & Surf Towns",
+              "attractions": [
+                {
+                  "name": "Hanalei Bay",
+                  "description": "Breathtaking two-mile half-moon bay backed by mountains woven with waterfalls."
+                },
+                {
+                  "name": "Nāpali Coast State Wilderness Park",
+                  "description": "17 miles of spectacular coastline featuring 4,000-foot cliffs. Accessible only by hiking the Kalalau Trail, by boat, or by helicopter."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "South Shore",
+          "vibe": "Sunny, dry, resort-focused.",
+          "sub_locations": [
+            {
+              "name": "Po'ipū",
+              "type": "Resort Town",
+              "attractions": [
+                {
+                  "name": "Po'ipū Beach Park",
+                  "description": "Popular beach for snorkeling and spotting Hawaiian monk seals basking on the sand."
+                },
+                {
+                  "name": "Spouting Horn",
+                  "description": "Blowhole where crashing waves force water through a lava tube, shooting it up into the air."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "West Side",
+          "vibe": "Rugged, historic, awe-inspiring.",
+          "sub_locations": [
+            {
+              "name": "Waimea",
+              "type": "Historic Town & Canyon",
+              "attractions": [
+                {
+                  "name": "Waimea Canyon State Park",
+                  "description": "Known as the 'Grand Canyon of the Pacific,' stretching 14 miles long and over 3,600 feet deep."
+                },
+                {
+                  "name": "Kōke'e State Park",
+                  "description": "Forested park north of the canyon offering hiking trails and lookouts over the Kalalau Valley."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "East Side (Coconut Coast)",
+          "vibe": "Commercial, accessible, breezy.",
+          "sub_locations": [
+            {
+              "name": "Kapa'a & Wailua",
+              "type": "Coastal Towns",
+              "attractions": [
+                {
+                  "name": "Wailua River",
+                  "description": "Hawaii's only navigable river, popular for kayaking to Secret Falls."
+                },
+                {
+                  "name": "Fern Grotto",
+                  "description": "Lava rock cave covered in tropical ferns, accessible via boat tours."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "featured_media": [
+        {
+          "title": "Kauai: The Only Hawaii Travel Guide You Need",
+          "source": "The Hawaii Vacation Guide (YouTube)",
+          "url": "https://www.youtube.com/watch?v=example_kauai_1",
+          "highlights": [
+            "Mountain tubing in irrigation canals",
+            "Napali Coast boat tours",
+            "Helicopter tours",
+            "Wailua River kayak hikes"
+          ]
+        }
+      ]
+    },
+    {
+      "island_name": "Island of Hawai'i",
+      "nickname": "The Big Island",
+      "overview": "Larger than all the other islands combined, it boasts diverse climate zones ranging from tropical rainforests to arid deserts and snow-capped mountains.",
+      "regions": [
+        {
+          "region_name": "Kona (West)",
+          "vibe": "Sunny, dry, coffee-centric, historic.",
+          "sub_locations": [
+            {
+              "name": "Kailua-Kona",
+              "type": "Coastal Town",
+              "attractions": [
+                {
+                  "name": "Historic Kailua Village",
+                  "description": "Seaside town featuring Hulihe'e Palace and the Mokuaikaua Church."
+                },
+                {
+                  "name": "Kona Coffee Farms",
+                  "description": "Hundreds of farms (like Mountain Thunder Coffee Plantation) growing the world-famous Kona beans; many offer tasting tours."
+                },
+                {
+                  "name": "Kealakekua Bay",
+                  "description": "Site of the Captain Cook Monument and some of the best snorkeling in the state."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Hilo (East)",
+          "vibe": "Lush, rainy, authentic, botanical.",
+          "sub_locations": [
+            {
+              "name": "Hilo Town",
+              "type": "City center",
+              "attractions": [
+                {
+                  "name": "Rainbow Falls",
+                  "description": "Accessible 80-foot waterfall just outside downtown Hilo."
+                },
+                {
+                  "name": "Lili'uokalani Gardens",
+                  "description": "Beautifully landscaped, 30-acre authentic Japanese garden."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Puna & Ka'ū (South)",
+          "vibe": "Volcanic, raw, remote.",
+          "sub_locations": [
+            {
+              "name": "Hawai'i Volcanoes National Park",
+              "type": "National Park",
+              "attractions": [
+                {
+                  "name": "Kīlauea Caldera",
+                  "description": "One of the world's most active volcanoes. Visitors can drive the Crater Rim Drive and walk through the Thurston Lava Tube."
+                },
+                {
+                  "name": "Punalu'u Black Sand Beach",
+                  "description": "Famous jet-black sand beach where Hawaiian green sea turtles frequently bask."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Kohala (Northwest) & Hāmākua Coast (Northeast)",
+          "vibe": "Luxury resorts (West) to sheer cliff valleys (East).",
+          "sub_locations": [
+            {
+              "name": "Waimea & Kohala Coast",
+              "type": "Paniolo (Cowboy) Country & Resorts",
+              "attractions": [
+                {
+                  "name": "Pu'ukoholā Heiau",
+                  "description": "Massive ancient stone temple built by King Kamehameha I."
+                },
+                {
+                  "name": "Waipi'o Valley Lookout",
+                  "description": "Dramatic overlook of the 'Valley of the Kings,' framed by towering sea cliffs and cascading waterfalls."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dining_recommendations": [
+        {
+          "restaurant_name": "Big Island Brewhaus",
+          "location": "Waimea",
+          "specialty": "High-quality artisan beers and Mexican-inspired pub food"
+        }
+      ],
+      "featured_media": [
+        {
+          "title": "22 Things to Do Around the Big Island",
+          "source": "The Hawaii Vacation Guide (YouTube)",
+          "url": "https://www.youtube.com/watch?v=example_big_island_1",
+          "highlights": [
+            "Kona, Hilo, & Waikoloa",
+            "Volcanoes National Park",
+            "Manta Ray Night Snorkels"
+          ]
+        },
+        {
+          "title": "Must-Do in Hawaii: Best Activities for Each Hawaiian Island",
+          "source": "Fora Travel",
+          "url": "https://www.foratravel.com/guides/must-do-in-hawaii",
+          "highlights": [
+            "Waimea horseback riding",
+            "King's Highway Foot trail hikes"
+          ]
+        }
+      ]
+    },
+    {
+      "island_name": "Lāna'i",
+      "nickname": "The Pineapple Isle",
+      "overview": "The smallest inhabited island accessible to visitors, offering luxurious privacy at high-end resorts alongside rugged, off-the-beaten-path 4x4 adventures.",
+      "regions": [
+        {
+          "region_name": "South Lāna'i",
+          "sub_locations": [
+            {
+              "name": "Manele Bay",
+              "type": "Resort Area",
+              "attractions": [
+                {
+                  "name": "Hulopo'e Bay",
+                  "description": "Stunning public beach known for resident spinner dolphins and excellent snorkeling."
+                },
+                {
+                  "name": "Pu'upehe (Sweetheart Rock)",
+                  "description": "Iconic sea stack accessible via a short cultural hike from Hulopo'e Beach."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Central Lāna'i",
+          "sub_locations": [
+            {
+              "name": "Lāna'i City",
+              "type": "Town Center",
+              "attractions": [
+                {
+                  "name": "Dole Park",
+                  "description": "The grassy heart of the city, lined with towering Cook pine trees and local boutiques."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dining_recommendations": [
+        {
+          "restaurant_name": "Nobu Lanai",
+          "location": "Manele Bay",
+          "specialty": "World-class sushi and Japanese fusion with ocean views"
+        }
+      ]
+    },
+    {
+      "island_name": "Moloka'i",
+      "nickname": "The Friendly Isle",
+      "overview": "Hawaii's most authentic island, heavily rooted in Native Hawaiian culture with no traffic lights and a rejection of massive commercial tourism.",
+      "regions": [
+        {
+          "region_name": "Central Moloka'i",
+          "sub_locations": [
+            {
+              "name": "Kaunakakai",
+              "type": "Main Town",
+              "attractions": [
+                {
+                  "name": "Kaunakakai Wharf",
+                  "description": "The state's longest pier, stretching out into the Pacific."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "region_name": "Kalaupapa Peninsula",
+          "sub_locations": [
+            {
+              "name": "Kalaupapa National Historical Park",
+              "type": "Historic Settlement",
+              "attractions": [
+                {
+                  "name": "Kalaupapa Settlement",
+                  "description": "Historic exile colony for individuals with Hansen's disease (leprosy). Access is highly restricted and requires guided tours."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
