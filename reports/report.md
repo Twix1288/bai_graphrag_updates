@@ -168,12 +168,12 @@ Being candid about where this would strain if scaled as-is:
    inferring the wrong budget tier from "money no object"). The *engine* is correct;
    the *inputs* are weak. At 500 sub-locations this becomes the dominant quality
    risk. The plan already anticipates this — scores are meant to be human-verified —
-   but we should not ship unverified LLM scores at scale.
+   but we should not ship unverified LLM scores at scale. -> due to low model I am testing with
 
 2. **No curation/publishing pipeline yet.** The plan calls for raw files in GCS → an
    editable working set in Supabase → a serving layer in Neo4j, with the graph
    rebuildable from source. Today we ingest straight into Neo4j: no human review, no
-   provenance, no clean rebuild path.
+   provenance, no clean rebuild path. -> Only testing with Neo4j and Hawaii scraped data
 
 3. **Geocoding is rate-limited.** The public Nominatim endpoint caps us at 1
    request/second — slow for a large corpus and not appropriate for production
