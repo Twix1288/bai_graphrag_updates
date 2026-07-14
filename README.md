@@ -1,68 +1,63 @@
-# GraphRAG Sub-Location Intelligence
+# GraphRAG Sub-Location Intelligence 
 
-Welcome to the **GraphRAG Sub-Location Intelligence** project! This repository contains a travel recommendation engine that goes beyond generic destination matching (like "Maui" or "Cancun"). Instead, it ranks the *sub-locations* of a destination (like Ka'anapali vs. Wailea) by how well they fit a traveler's specific preferences, and explains its reasoning in plain English.
+Hey! So the original demo for this travel recommendation engine was a really cool proof-of-concept, but I wanted to take it from a demo scaffold and make it genuinely production-ready.
 
----
+With Claude's help, I ran a deep audit on the system and ended up rewriting big chunks of the core logic to make it secure, accurate, and totally end-to-end capable. Here’s a rundown of what I actually changed and why.
 
-## 🛠️ Recent Improvements & Fixes (What We Changed)
+## 🛠️ What Claude and I Fixed & Improved
 
-The original demo-scaffold laid a fantastic foundation. Recently, we ran an intensive system audit and applied a series of production-readiness improvements (with the help of Claude) to make the system secure, accurate, and truly end-to-end capable. 
+### 1. Stopping the Data Collapse
+When I tried running the real Hawaii dataset through the original ingestion, I noticed something crazy: 88 distinct places were silently collapsing into just 21 entities. "O'ahu" somehow got tagged as a Destination, Region, SubLocation, *and* Attraction all at once. 
+**The fix:** I bypassed the old fuzzy string-matching and implemented deterministic IDs keyed by `(type, normalized name, parent)`. Now, if there are two "North Shore" regions (one on Oahu, one on Kauai), they coexist perfectly without squashing each other.
 
-Here are the major changes and edits we made to harden the project:
+### 2. Building a Real Ranking Engine
+The old sub-location ranker was accidentally assigning identical scores to everything because of a fallback bug. I ripped that out and built a **deterministic weighted dot-product engine**. Now, it mathematically ranks areas against a fixed 10-attribute schema (beach, snorkeling, food scene, etc.), complete with strict budget hard-filters and penalties. The LLM is strictly used to translate text to weights and write the final copy—it is completely removed from the actual ranking math.
 
-### 1. Data Integrity & Schema Unification
-- **Fixed the Entity Collapse Bug**: When testing against the real Hawaii dataset, we found that 88 distinct places were silently collapsing into just 21 entities (due to fuzzy name-merging). We implemented **deterministic IDs keyed by (type, normalized name, parent)**. Now, legitimately repeated names (like two different "North Shore" regions) can coexist perfectly. 
-- **Unified Structured Data**: Structured nodes (Destinations, Regions, SubLocations) now properly receive the `Entity` label and discoverability aliases so the engine can actually query them.
-
-### 2. The Deterministic Ranking Engine
-- **Replaced Hallucinated Scores**: The previous sub-location ranker inadvertently assigned identical scores to all sub-locations due to a fallback bug. We built the true **deterministic weighted dot-product engine** from the product plan. 
-- **10-Attribute Schema**: It now mathematically ranks areas against a fixed 10-attribute schema (beach, snorkeling, food scene, etc.), with strict budget hard-filters and penalties, keeping the LLM entirely out of the ranking math.
-
-### 3. Security & Correctness
-- **Closed Cypher Injection**: Parameterized the NL2Cypher fallback path to close a live injection vulnerability.
-- **Enforced Timeouts & TLS**: Fixed the Neo4j query timeout so the 5-second driver limit is actually applied server-side. Enforced TLS verification on the embeddings client using a portable CA bundle.
-- **Reconciled Routing**: Fixed a routing gap where resolvable destinations were entirely skipping the sub-location ranker. The engine now uses a graph probe (`[:PART_OF]`) to dynamically route to the correct planner.
+### 3. Plugging Security Holes & Routing Bugs
+- **Cypher Injection:** Found a live injection vulnerability in the NL2Cypher fallback path. I parameterized the query to lock it down.
+- **Silent Timeouts & TLS:** Fixed the Neo4j query timeout so the 5-second limit actually works server-side. Also enforced TLS verification on the embeddings client using a portable CA bundle so it works securely on macOS.
+- **Routing:** There was a bug where resolvable destinations were entirely skipping the sub-location ranker. I added a graph probe (`[:PART_OF]`) so the engine dynamically routes to the correct planner now.
 
 ### 4. Keyless Geocoding
-- **Integrated Nominatim**: Replaced an inactive Google Maps key with OpenStreetMap Nominatim. We added query normalization and fallback parsing, successfully geocoding ~83% of our entities out of the box while respecting the 1-request/second usage policy.
+The old setup had an inactive Google Maps key, meaning attractions were never getting geocoded. I swapped that out for OpenStreetMap Nominatim. Added some query normalization and fallback parsing, and now we're successfully geocoding ~83% of the entities right out of the box (while playing nice with their 1-request/second limit).
 
 ---
 
-## 🌟 What It Does
+## 🌟 How the Engine Works Now
 
-When a traveler picks a destination and describes what they're looking for (e.g., "We love snorkeling and casual food on a mid-range budget"), the engine:
-1. Translates those free-text preferences into a mathematical weight vector.
-2. Scores the destination's sub-locations against those weights.
-3. Returns ranked area cards containing a "why this fits you" explanation and an honest tradeoff.
+When you pick a destination and describe your trip (e.g., "We love snorkeling and casual food on a mid-range budget"):
+1. The engine translates your text into a mathematical weight vector.
+2. It scores the destination's sub-locations against those weights using the new deterministic engine.
+3. It hands back ranked area cards with a "why this fits you" explanation and an honest tradeoff.
 
-Because the ranking is math-based rather than an opaque AI judgment, the results are fast, cheap, debuggable, and fully explainable.
+Because it relies on math instead of an opaque LLM prompt for the ranking, it's fast, cheap, completely debuggable, and doesn't hallucinate.
 
-## 🚀 How to Run It
+## 🚀 Running It Locally
 
-You can spin up the entire system locally using Docker. Note: Neo4j 5.18+ is required for `vector.similarity.cosine` support.
+You can spin the whole thing up locally with Docker (just make sure you're on Neo4j 5.18+ so `vector.similarity.cosine` works).
 
 ```bash
-# 1. Spin up Infrastructure (Neo4j and Redis)
+# 1. Spin up the infrastructure
 docker run -d --name graphrag-neo4j -p 7474:7474 -p 7687:7687 \
   -e NEO4J_AUTH=<user>/<pass> neo4j:5.24-community
 docker run -d --name graphrag-redis -p 6379:6379 redis:7-alpine
 
-# 2. Setup Schema & Ingest Data
+# 2. Setup the schema and ingest the sample data
 docker cp setup_neo4j.cypher graphrag-neo4j:/tmp/setup.cypher
 docker exec graphrag-neo4j cypher-shell -u <user> -p <pass> -f /tmp/setup.cypher
 python3 -m src.ingest_structured_data data/sample_scraped_data.json
 
-# 3. Run the Interactive Chat Planner
+# 3. Try out the Interactive Chat Planner!
 PYTHONPATH=. python3 -m src.subloc_chat
 ```
 
-### Running Tests
-To ensure everything is working correctly, you can run the test suite (we added 27 passing tests covering ranking, injection safety, and routing!):
+### Tests
+I also wrote 27 new tests to cover the ranking math, injection safety, and routing. You can run them with:
 ```bash
 python3 -m pytest tests/
 ```
 
-## 🗺️ Roadmap & Next Steps
-- **Human-in-the-Loop Curation**: Standing up a GCS → Supabase pipeline so human curators can review and tweak LLM-seeded attribute scores before they hit Neo4j.
-- **Hotel Grouping**: Wiring up point-in-polygon assignment to seamlessly group actual hotel inventory under these ranked sub-locations.
-- **Evaluation Harness**: Building a set of golden destination/preference pairs to continuously test ranking quality as models upgrade.
+## 🗺️ Next Steps
+- **Human-in-the-Loop Curation**: I want to set up a GCS → Supabase pipeline so human curators can tweak the LLM-seeded attribute scores before they ever hit Neo4j.
+- **Hotel Grouping**: Need to wire up point-in-polygon assignment to actually group real hotel inventory under these ranked sub-locations.
+- **Evaluation Harness**: Build a set of golden destination/preference pairs to continuously test the ranking quality as we swap out models.
